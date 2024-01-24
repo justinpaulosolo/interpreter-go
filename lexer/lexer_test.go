@@ -47,7 +47,7 @@ func TestNextToekn(t *testing.T) {
 
 	})
 
-	t.Run("advance", func(t *testing.T) {
+	t.Run("advance tokens", func(t *testing.T) {
 		input := `let five = 5;
 		let ten = 10;
 		let add = fn(x, y) {
@@ -72,6 +72,9 @@ func TestNextToekn(t *testing.T) {
 			{token.INT, "10"},
 			{token.SEMICOLON, ";"},
 
+			// let add = fn(x, y) {
+			//   x + y;
+			// }
 			{token.LET, "let"},
 			{token.IDENT, "add"},
 			{token.ASSIGN, "="},
@@ -88,6 +91,7 @@ func TestNextToekn(t *testing.T) {
 			{token.SEMICOLON, ";"},
 			{token.RBRACE, "}"},
 
+			//let result = add(five, ten);
 			{token.LET, "let"},
 			{token.IDENT, "result"},
 			{token.ASSIGN, "="},
